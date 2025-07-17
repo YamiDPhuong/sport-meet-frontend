@@ -1,1 +1,48 @@
 @import "tailwindcss";
+
+@theme {
+  --font-family-sans: 'Inter', sans-serif;
+  --color-background: #F8F9FA;
+  --color-panel-bg: #FFFFFF;
+  --color-border: #E5E7EB;
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-primary-action: #212529;
+  --border-radius-base: 8px;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-btn-primary {
+  background-color: var(--color-primary-action) !important;
+  border-radius: var(--border-radius-base) !important;
+  font-weight: 600 !important;
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: #3e444a !important;
+}
+
+.ant-input,
+.ant-select-selector,
+.ant-picker {
+  border-radius: var(--border-radius-base) !important;
+}
+
+.ant-table-wrapper {
+  background-color: var(--color-panel-bg);
+  border-radius: var(--border-radius-base);
+  border: 1px solid var(--color-border);
+}
+
+@layer components {
+  .panel {
+    @apply bg-white p-6 rounded-lg border border-gray-200;
+  }
+}
