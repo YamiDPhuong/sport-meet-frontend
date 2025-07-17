@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import PageTitle from '../ui/PageTitle';
 import NotificationBell from '../ui/NotificationBell';
 import UserProfile from '../ui/UserProfile';
+import Button from '../ui/Button';
 
 const Header: React.FC = () =>
 {
@@ -19,9 +19,7 @@ const Header: React.FC = () =>
             <div className="flex items-center space-x-6">
                 <NotificationBell hasNotification={true} />
                 <UserProfile user={user} />
-                <Button icon={<LogoutOutlined />}>
-                    Logout
-                </Button>
+                <Button icon={<LogoutOutlined />} text="Logout" />
             </div>
         </header>
     );
