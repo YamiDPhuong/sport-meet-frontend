@@ -1,56 +1,10 @@
-import React from 'react';
-import { Button, Table, Tag } from 'antd';
-import { EyeOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import Button from '../../components/ui/Button';
+import { PlusOutlined } from '@ant-design/icons';
+import PageTitle from '../../components/ui/PageTitle';
+import TeamTable from '../../components/ui/TeamTable';
 
-const columns = [
-    {
-        title: 'Logo',
-        dataIndex: 'logo',
-        key: 'logo',
-        render: ( text: string ) => <img src={text} alt="logo" className="w-8 h-8 rounded-full" />,
-    },
-    {
-        title: 'Team Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: ( text: string, record: any ) => (
-            <div>
-                <p className="font-semibold">{text}</p>
-                <p className="text-gray-500 text-sm">{record.type}</p>
-            </div>
-        ),
-    },
-    {
-        title: 'Members',
-        dataIndex: 'members',
-        key: 'members',
-        render: ( members: number ) => `${ members } members`,
-    },
-    {
-        title: 'Sport',
-        dataIndex: 'sport',
-        key: 'sport',
-        render: ( sport: string ) => <Tag>{sport}</Tag>,
-    },
-    {
-        title: 'Created',
-        dataIndex: 'created',
-        key: 'created',
-    },
-    {
-        title: 'Actions',
-        key: 'actions',
-        render: () => (
-            <div className="space-x-2">
-                <Button icon={<EyeOutlined />} />
-                <Button icon={<EditOutlined />} />
-                <Button icon={<DeleteOutlined />} danger />
-            </div>
-        ),
-    },
-];
-
-const data = [
+const mockData = [
     {
         key: '1',
         logo: 'https://via.placeholder.com/150',
@@ -80,23 +34,35 @@ const data = [
     },
 ];
 
-
-const TeamDetails: React.FC = () =>
+const TeamPage: React.FC = () =>
 {
+    const [ teams, setTeams ] = useState<any[]>( [] );
+    const [ loading, setLoading ] = useState( true );
+
+    useEffect( () =>
+    {
+        const fetchTeams = () =>
+        {
+            setLoading( true );
+            setTimeout( () =>
+            {
+                setTeams( mockData );
+                setLoading( false );
+            }, 500 );
+        };
+
+        fetchTeams();
+    }, [] );
+
     return (
         <div className="p-8">
             <div className="flex justify-between items-center mb-6">
-                <div>
-                    <h2 className="text-2xl font-bold">All Teams</h2>
-                    <p className="text-gray-500">Manage and organize your sports teams</p>
-                </div>
-                <Button type="primary" size="large">
-                    + Create Team
-                </Button>
+                <PageTitle title="All Teams" subtitle="Manage and organize your sports teams" />
+                <Button icon={<PlusOutlined />} text="Create Team" type="primary" size="large" className='font-bold' />
             </div>
-            <Table columns={columns} dataSource={data} pagination={false} />
+            <TeamTable dataSource={teams} pagination={false} loading={loading} />
         </div>
     );
 };
 
-export default TeamDetails;
+export default TeamPage;
