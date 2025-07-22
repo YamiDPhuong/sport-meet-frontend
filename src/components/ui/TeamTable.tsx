@@ -11,8 +11,8 @@ const columns = [
     },
     {
         title: 'Team Name',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'teamName',
+        key: 'teamName',
         render: ( text: string, record: any ) => (
             <div>
                 <p className="font-semibold">{text}</p>
