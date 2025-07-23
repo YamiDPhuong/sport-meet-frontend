@@ -2,10 +2,11 @@ import React from 'react'
 import { Button as AntButton } from 'antd';
 import { EyeOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import EditTeamModal from '../../features/team/EditTeamModal';
+import type { Team } from '../../types/team';
 
 interface TeamTableActionProps
 {
-    record: any;
+    record: Team;
 }
 
 const TeamTableAction: React.FC<TeamTableActionProps> = ( { record } ) =>

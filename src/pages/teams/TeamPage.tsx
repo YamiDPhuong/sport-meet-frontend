@@ -4,6 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import PageTitle from '../../components/ui/PageTitle';
 import TeamTable from '../../components/ui/TeamTable';
 import CreateTeamModal from '../../features/team/CreateTeamModal';
+import type { Team } from '../../types/team';
 
 import basketballImg from '../../assets/images/basketball.png';
 import soccerImg from '../../assets/images/soccer-ball-variant.png';
@@ -41,7 +42,7 @@ const mockData = [
 
 const TeamPage: React.FC = () =>
 {
-    const [ teams, setTeams ] = useState<any[]>( [] );
+    const [ teams, setTeams ] = useState<Team[]>( [] );
     const [ loading, setLoading ] = useState( true );
     const [ open, setOpen ] = useState( false );
 
@@ -59,7 +60,7 @@ const TeamPage: React.FC = () =>
 
         fetchTeams();
     }, [] );
-    const handleCreateTeam = ( values: any ) =>
+    const handleCreateTeam = ( values: Team ) =>
     {
         setOpen( false );
         console.log( values );

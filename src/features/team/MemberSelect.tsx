@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Input } from 'antd';
 import { SearchOutlined, DownOutlined, CloseOutlined } from '@ant-design/icons';
-
-interface Member
-{
-    id: string;
-    name: string;
-    email: string;
-    avatar?: string;
-}
+import type { Member } from '../../types/team';
 
 interface MemberSelectProps
 {
@@ -33,23 +26,20 @@ const MemberSelect: React.FC<MemberSelectProps> = ( {
 
     const [ searchTerm, setSearchTerm ] = useState( '' );
     const [ isOpen, setIsOpen ] = useState( false );
-    const [ filteredMembers, setFilteredMembers ] = useState<Member[]>( members );
 
-    useEffect( () =>
+    const filteredMembers = useMemo( () =>
     {
-        if ( searchTerm.trim() === '' )
+        if ( !searchTerm.trim() )
         {
-            setFilteredMembers( members );
-        } else
-        {
-            const filtered = members.filter(
-                member =>
-                    member.name.toLowerCase().includes( searchTerm.toLowerCase() ) ||
-                    member.email.toLowerCase().includes( searchTerm.toLowerCase() )
-            );
-            setFilteredMembers( filtered );
+            return members;
         }
-    }, [ searchTerm, members ] );
+        const lowerSearchTerm = searchTerm.toLowerCase();
+        return members.filter(
+            member =>
+                member.name.toLowerCase().includes( lowerSearchTerm ) ||
+                member.email.toLowerCase().includes( lowerSearchTerm )
+        );
+    }, [ members, searchTerm ] );
 
     const toggleMember = ( memberId: string ) =>
     {

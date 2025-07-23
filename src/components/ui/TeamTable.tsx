@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Tag } from 'antd'
 import TeamTableAction from './TeamTableAction';
+import type { Team } from '../../types/team';
 
 const columns = [
     {
@@ -13,7 +14,7 @@ const columns = [
         title: 'Team Name',
         dataIndex: 'teamName',
         key: 'teamName',
-        render: ( text: string, record: any ) => (
+        render: ( text: string, record: Team ) => (
             <div>
                 <p className="font-semibold">{text}</p>
                 <p className="text-gray-500 text-sm">{record.type}</p>
@@ -40,14 +41,14 @@ const columns = [
     {
         title: 'Actions',
         key: 'actions',
-        render: ( record: any ) => <TeamTableAction record={record} />,
+        render: ( record: Team ) => <TeamTableAction record={record} />,
     },
 ];
 
 interface TeamTableProps
 {
-    dataSource: any;
-    pagination?: any | false;
+    dataSource: Team[];
+    pagination?: object | false;
     loading?: boolean;
 }
 

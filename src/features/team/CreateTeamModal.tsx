@@ -1,12 +1,13 @@
 import React from 'react';
 import { Modal } from 'antd';
 import TeamForm from './TeamForm';
+import type { Team } from '../../types/team';
 
 interface CreateTeamModalProps
 {
     visible: boolean;
     onClose: () => void;
-    onFinish: ( values: any ) => void;
+    onFinish: ( values: Team ) => void;
     loading?: boolean;
 }
 
@@ -18,7 +19,7 @@ const CreateTeamModal: React.FC<CreateTeamModalProps> = ( {
     loading = false,
 } ) =>
 {
-    const handleFormFinish = ( values: any ) =>
+    const handleFormFinish = ( values: Team ) =>
     {
         onFinish( values );
     };

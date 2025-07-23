@@ -4,16 +4,18 @@ import Form, { Field } from 'rc-field-form';
 import MemberSelect from './MemberSelect';
 import FormItem from '../../components/ui/FormItem';
 import UploadImage from '../../components/ui/ImageUploader';
+import type { Member, Team } from '../../types/team';
+import type { UploadFile } from 'antd';
 
 interface TeamFormProps
 {
-    initialValues?: any;
-    onFinish: ( values: any ) => void;
+    initialValues?: Partial<Team>;
+    onFinish: ( values: Team ) => void;
     onCancel: () => void;
     submitButtonText?: string;
     loading?: boolean;
 }
-const members = [
+const members: Member[] = [
     {
         id: '1',
         name: 'John Smith',
@@ -166,21 +168,16 @@ const TeamForm: React.FC<TeamFormProps> = ( {
             form.setFieldsValue( initialValues );
             if ( initialValues.members )
             {
-                setSelectedMembers( isEditMode ? initialValues.members : selectedMembersTeam );
+                // setSelectedMembers( isEditMode ? selectedMembersTeam : initialValues.members as string[] );
+                const membersValue = Array.isArray( initialValues.members ) ? initialValues.members : [];
+                setSelectedMembers( isEditMode ? membersValue : selectedMembersTeam );
             }
         }
     }, [ initialValues, form ] );
 
-    const normFile = ( e: any ) =>
-    {
-        if ( Array.isArray( e ) )
-        {
-            return e;
-        }
-        return e && e.fileList;
-    };
+    const normFile = ( e: UploadFile[] | { fileList: UploadFile[] } ) => Array.isArray( e ) ? e : e?.fileList;
 
-    const validateForm = ( values: any ) =>
+    const validateForm = ( values: Partial<Team> ) =>
     {
         const newErrors: Record<string, string> = {};
 
