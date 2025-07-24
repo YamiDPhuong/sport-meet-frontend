@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 interface NavItemProps
 {
     icon: React.ReactNode;
@@ -6,6 +8,7 @@ interface NavItemProps
     href: string;
     isActive?: boolean;
 }
+
 const NavItem: React.FC<NavItemProps> = ( { icon, label, href, isActive = false } ) =>
 {
     const linkClassName = isActive
@@ -17,11 +20,12 @@ const NavItem: React.FC<NavItemProps> = ( { icon, label, href, isActive = false 
 
     return (
         <li className={listItemClassName}>
-            <a href={href} className={linkClassName}>
+            <Link to={href} className={linkClassName}>
                 {icon}
                 <span>{label}</span>
-            </a>
+            </Link>
         </li>
     );
 };
+
 export default NavItem;
