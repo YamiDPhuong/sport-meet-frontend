@@ -11,26 +11,16 @@ interface FormItemProps
 const FormItem: React.FC<FormItemProps> = ( { label, required, error, children } ) =>
 {
     return (
-        <div style={{ marginBottom: 24 }}>
+        <div className="mb-4">
             {label && (
-                <div style={{
-                    marginBottom: 8,
-                    color: 'rgba(0, 0, 0, 0.85)',
-                    fontSize: 14,
-                    lineHeight: '22px'
-                }}>
-                    {required && <span style={{ color: '#ff4d4f', marginRight: 4 }}>*</span>}
+                <div className="mb-2 text-sm text-gray-700">
+                    {required && <span className="text-red-500 mr-1">*</span>}
                     {label}
                 </div>
             )}
             {children}
             {error && (
-                <div style={{
-                    color: '#ff4d4f',
-                    fontSize: 14,
-                    lineHeight: '22px',
-                    marginTop: 8
-                }}>
+                <div className="text-red-500 text-sm mt-2">
                     {error}
                 </div>
             )}

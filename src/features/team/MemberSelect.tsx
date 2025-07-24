@@ -26,7 +26,6 @@ const MemberSelect: React.FC<MemberSelectProps> = ( {
 
     const [ searchTerm, setSearchTerm ] = useState( '' );
     const [ isOpen, setIsOpen ] = useState( false );
-
     const filteredMembers = useMemo( () =>
     {
         if ( !searchTerm.trim() )
@@ -41,16 +40,7 @@ const MemberSelect: React.FC<MemberSelectProps> = ( {
         );
     }, [ members, searchTerm ] );
 
-    const toggleMember = ( memberId: string ) =>
-    {
-        if ( value.includes( memberId ) )
-        {
-            onChange( value.filter( id => id !== memberId ) );
-        } else
-        {
-            onChange( [ ...value, memberId ] );
-        }
-    };
+    const toggleMember = ( memberId: string ) => ( value.includes( memberId ) ? onChange( value.filter( id => id !== memberId ) ) : onChange( [ ...value, memberId ] ) );
 
     const removeMember = ( memberId: string, e: React.MouseEvent ) =>
     {

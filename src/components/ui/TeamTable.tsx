@@ -17,7 +17,7 @@ const columns = [
         render: ( text: string, record: Team ) => (
             <div>
                 <p className="font-semibold">{text}</p>
-                <p className="text-gray-500 text-sm">{record.type}</p>
+                <p className="text-gray-500 text-sm">{record.type} team</p>
             </div>
         ),
     },
