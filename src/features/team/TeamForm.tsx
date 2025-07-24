@@ -4,8 +4,9 @@ import Form, { Field } from 'rc-field-form';
 import MemberSelect from './MemberSelect';
 import FormItem from '../../components/ui/FormItem';
 import UploadImage from '../../components/ui/ImageUploader';
-import type { Member, Team } from '../../types/team';
+import type { Team } from '../../types/types';
 import type { UploadFile } from 'antd';
+import { allMembers } from '../../fake/staticFakeData';
 
 interface TeamFormProps
 {
@@ -15,128 +16,7 @@ interface TeamFormProps
     submitButtonText?: string;
     loading?: boolean;
 }
-const members: Member[] = [
-    {
-        id: '1',
-        name: 'John Smith',
-        email: 'john.smith@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=johnsmith',
-    },
-    {
-        id: '2',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '3',
-        name: 'Mike Davis',
-        email: 'mike.davis@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=mikedavis',
-    },
-    {
-        id: '4',
-        name: 'Emily Davis',
-        email: 'emily.davis@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=emilydavis',
-    },
-    {
-        id: '5',
-        name: 'David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '6',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '7',
-        name: 'David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '8',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '9',
-        name: 'David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '10',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '11',
-        name: 'David Wilson David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '12',
-        name: 'Sarah Johnson Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '13',
-        name: 'David Wilson David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '14',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '15',
-        name: 'David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '16',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '17',
-        name: 'David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '18',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-    {
-        id: '19',
-        name: 'David Wilson',
-        email: 'david.w@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=davidw',
-    },
-    {
-        id: '20',
-        name: 'Sarah Johnson',
-        email: 'sarah.j@email.com',
-        avatar: 'https://i.pravatar.cc/150?u=sarahj',
-    },
-];
+
 const sports = [
     { value: 'football', label: 'Football' },
     { value: 'basketball', label: 'Basketball' },
@@ -144,8 +24,6 @@ const sports = [
     { value: 'volleyball', label: 'Volleyball' },
     { value: 'badminton', label: 'Badminton' },
 ];
-const selectedMembersTeam = [ '1', '2', '3', '4', '5' ];
-
 const TeamForm: React.FC<TeamFormProps> = ( {
     initialValues = {},
     onFinish: onFinishProp,
@@ -156,10 +34,10 @@ const TeamForm: React.FC<TeamFormProps> = ( {
 {
     const [ form ] = Form.useForm();
     const [ selectedMembers, setSelectedMembers ] = useState<string[]>(
-        Array.isArray( initialValues.members ) ? initialValues.members : []
+        Array.isArray( initialValues.members ) ? initialValues.members.map( member => member.id ) : []
     );
     const [ errors, setErrors ] = useState<Record<string, string>>( {} );
-    const isEditMode = !!initialValues.key;
+    const isEditMode = !!initialValues.id;
 
     useEffect( () =>
     {
@@ -168,9 +46,7 @@ const TeamForm: React.FC<TeamFormProps> = ( {
             form.setFieldsValue( initialValues );
             if ( initialValues.members )
             {
-                // setSelectedMembers( isEditMode ? selectedMembersTeam : initialValues.members as string[] );
-                const membersValue = Array.isArray( initialValues.members ) ? initialValues.members : [];
-                setSelectedMembers( isEditMode ? membersValue : selectedMembersTeam );
+                setSelectedMembers( isEditMode ? initialValues.members.map( member => member.id ) : initialValues.members.map( member => member.id ) );
             }
         }
     }, [ initialValues, form ] );
@@ -205,7 +81,7 @@ const TeamForm: React.FC<TeamFormProps> = ( {
                 {
                     onFinishProp( {
                         ...values,
-                        members: selectedMembers,
+                        members: allMembers.filter( member => selectedMembers.includes( member.id ) ),
                     } );
                 }
             } )
@@ -274,7 +150,7 @@ const TeamForm: React.FC<TeamFormProps> = ( {
             </div>
 
             <MemberSelect
-                members={members}
+                members={allMembers}
                 value={selectedMembers}
                 onChange={setSelectedMembers}
                 label="Add Members"

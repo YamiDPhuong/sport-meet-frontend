@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Input } from 'antd';
 import { SearchOutlined, DownOutlined, CloseOutlined } from '@ant-design/icons';
-import type { Member } from '../../types/team';
+import type { Member } from '../../types/types';
 
 interface MemberSelectProps
 {

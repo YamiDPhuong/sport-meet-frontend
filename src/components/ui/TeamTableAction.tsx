@@ -2,7 +2,8 @@ import React from 'react'
 import { Button as AntButton } from 'antd';
 import { EyeOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import EditTeamModal from '../../features/team/EditTeamModal';
-import type { Team } from '../../types/team';
+import type { Team } from '../../types/types';
+import { useNavigate } from 'react-router-dom';
 
 interface TeamTableActionProps
 {
@@ -11,23 +12,24 @@ interface TeamTableActionProps
 
 const TeamTableAction: React.FC<TeamTableActionProps> = ( { record } ) =>
 {
+    const navigate = useNavigate();
     const [ open, setOpen ] = React.useState( false );
 
     const handleView = () =>
     {
-        console.log( 'View:', record );
+        console.log( record );
+        navigate( `/teams/${ record.id }`, { state: { team: record } } );
+
     };
 
     const handleEdit = () =>
     {
-        console.log( 'Edit:', record );
         setOpen( true );
-
     };
 
     const handleDelete = () =>
     {
-        console.log( 'Delete:', record );
+        setOpen( true );
     };
 
     return (

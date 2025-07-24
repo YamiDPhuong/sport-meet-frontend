@@ -1,14 +1,15 @@
 import React from 'react'
 import { Table, Tag } from 'antd'
 import TeamTableAction from './TeamTableAction';
-import type { Team } from '../../types/team';
+import type { Team } from '../../types/types';
+import { formatDate } from '../../utils/dateUtils';
 
 const columns = [
     {
         title: 'Logo',
         dataIndex: 'logo',
         key: 'logo',
-        render: ( text: string ) => <img src={text} alt="logo" className="w-8 h-8 rounded-full" />,
+        render: ( logo: string ) => <img src={logo} alt="Team Logo" className="w-10 h-10 rounded-full" />,
     },
     {
         title: 'Team Name',
@@ -23,9 +24,9 @@ const columns = [
     },
     {
         title: 'Members',
-        dataIndex: 'members',
-        key: 'members',
-        render: ( members: number ) => `${ members } members`,
+        dataIndex: 'memberCount',
+        key: 'memberCount',
+        render: ( memberCount: number ) => `${ memberCount } members`,
     },
     {
         title: 'Sport',
@@ -37,6 +38,7 @@ const columns = [
         title: 'Created',
         dataIndex: 'created',
         key: 'created',
+        render: ( created: string ) => formatDate( created ),
     },
     {
         title: 'Actions',
