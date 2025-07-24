@@ -13,7 +13,7 @@ const Header: React.FC = () =>
     };
 
     return (
-        <header className="flex items-center justify-between bg-white p-4 shadow-sm">
+        <header className="flex items-center justify-between bg-white p-4 pl-8 pr-8 shadow-sm">
             <PageTitle title="Teams" subtitle="Manage your sports teams" />
 
             <div className="flex items-center space-x-6">
