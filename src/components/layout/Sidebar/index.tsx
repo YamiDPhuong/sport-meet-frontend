@@ -30,7 +30,7 @@ const Sidebar: React.FC = () =>
     return (
         <aside className="w-64 bg-white border-r h-screen p-4">
             <SidebarLogo />
-            <nav>
+            <div className="ant-layout-sider-children">
                 <ul>
                     <NavItem
                         href="/"
@@ -57,7 +57,7 @@ const Sidebar: React.FC = () =>
                         isActive={activeItem === 'profile'}
                     />
                 </ul>
-            </nav>
+            </div>
         </aside>
     );
 };

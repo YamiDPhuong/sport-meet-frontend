@@ -9,7 +9,7 @@ const columns = [
         title: 'Logo',
         dataIndex: 'logo',
         key: 'logo',
-        render: ( logo: string ) => <img src={logo} alt="Team Logo" className="w-10 h-10 rounded-full" />,
+        render: ( logo: string ) => <img src={logo} alt="Team Logo" className="w-12 h-12 rounded-full" />,
     },
     {
         title: 'Team Name',
@@ -57,7 +57,13 @@ interface TeamTableProps
 const TeamTable: React.FC<TeamTableProps> = ( { dataSource, pagination, loading } ) =>
 {
     return (
-        <Table columns={columns} dataSource={dataSource} pagination={pagination} loading={loading} />
+        <Table
+            columns={columns}
+            dataSource={dataSource}
+            rowKey={( record ) => record.id}
+            pagination={pagination}
+            loading={loading}
+        />
     )
 }
 
