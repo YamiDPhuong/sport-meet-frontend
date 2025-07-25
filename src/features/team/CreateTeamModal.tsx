@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 import TeamForm from './TeamForm';
-import type { Team } from '../../types/types';
+import type { Team } from '@/types/types';
 
 interface CreateTeamModalProps
 {

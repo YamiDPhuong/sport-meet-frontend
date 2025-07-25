@@ -1,8 +1,8 @@
 import React from 'react'
 import { Table, Tag } from 'antd'
 import TeamTableAction from './TeamTableAction';
-import type { Team } from '../../types/types';
-import { formatDate } from '../../utils/dateUtils';
+import type { Team } from '@/types/types';
+import { formatDate } from '@/utils/dateUtils';
 
 const columns = [
     {

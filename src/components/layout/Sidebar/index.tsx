@@ -10,9 +10,9 @@ import
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
 
-import NavItem from '../../ui/NavItem';
+import NavItem from '@/components/ui/NavItem';
 import SidebarLogo from './SidebarLogo';
-import { useSidebarStore } from '../../../store/useSidebarStore';
+import { useSidebarStore } from '@/store/useSidebarStore';
 
 const Sidebar: React.FC = () =>
 {

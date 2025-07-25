@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button as AntButton } from 'antd';
 import { EyeOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import EditTeamModal from '../../features/team/EditTeamModal';
-import type { Team } from '../../types/types';
+import EditTeamModal from '@/features/team/EditTeamModal';
+import type { Team } from '@/types/types';
 import { useNavigate } from 'react-router-dom';
 
 interface TeamTableActionProps

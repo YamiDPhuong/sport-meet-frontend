@@ -1,9 +1,9 @@
 import React from 'react';
 import { LogoutOutlined } from '@ant-design/icons';
-import PageTitle from '../ui/PageTitle';
-import NotificationBell from '../ui/NotificationBell';
-import UserProfile from '../ui/UserProfile';
-import Button from '../ui/Button';
+import PageTitle from '@/components/ui/PageTitle';
+import NotificationBell from '@/components/ui/NotificationBell';
+import UserProfile from '@/components/ui/UserProfile';
+import Button from '@/components/ui/Button';
 
 const Header: React.FC = () =>
 {

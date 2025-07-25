@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Input, Select, Button } from 'antd';
 import Form, { Field } from 'rc-field-form';
 import MemberSelect from './MemberSelect';
-import FormItem from '../../components/ui/FormItem';
-import UploadImage from '../../components/ui/ImageUploader';
-import type { Team } from '../../types/types';
+import FormItem from '@/components/ui/FormItem';
+import UploadImage from '@/components/ui/ImageUploader';
+import type { Team } from '@/types/types';
 import type { UploadFile } from 'antd';
-import { allMembers } from '../../fake/staticFakeData';
+import { allMembers } from '@/fake/staticFakeData';
 
 interface TeamFormProps
 {

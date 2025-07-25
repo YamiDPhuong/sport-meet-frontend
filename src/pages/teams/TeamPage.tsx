@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../../components/ui/Button';
+import Button from '@/components/ui/Button';
 import { PlusOutlined } from '@ant-design/icons';
-import PageTitle from '../../components/ui/PageTitle';
-import TeamTable from '../../components/ui/TeamTable';
-import CreateTeamModal from '../../features/team/CreateTeamModal';
-import type { Team } from '../../types/types';
-import { teams } from '../../fake/staticFakeData';
+import PageTitle from '@/components/ui/PageTitle';
+import TeamTable from '@/components/ui/TeamTable';
+import CreateTeamModal from '@/features/team/CreateTeamModal';
+import type { Team } from '@/types/types';
+import { teams } from '@/fake/staticFakeData';
 
 const TeamPage: React.FC = () =>
 {
